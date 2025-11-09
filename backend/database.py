@@ -24,11 +24,27 @@ load_dotenv()
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./quiz_generator.db")
 
 # Engine and Session
-engine = create_engine(
-    DATABASE_URL,
-    echo=True,
-    pool_pre_ping=True
-)
+# Use connect_args for SQLite to handle file creation
+connect_args = {}
+if DATABASE_URL.startswith("sqlite"):
+    connect_args = {"check_same_thread": False}
+
+try:
+    engine = create_engine(
+        DATABASE_URL,
+        echo=False,  # Disable echo in production to reduce logs
+        pool_pre_ping=True,
+        connect_args=connect_args
+    )
+except Exception as e:
+    print(f"⚠️ Database engine creation warning: {e}")
+    # Create a minimal engine even if there's an error
+    engine = create_engine(
+        DATABASE_URL,
+        echo=False,
+        pool_pre_ping=True,
+        connect_args=connect_args
+    )
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
