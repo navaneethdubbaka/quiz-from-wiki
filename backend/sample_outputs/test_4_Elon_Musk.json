@@ -1,0 +1,128 @@
+{
+  "summary": "Elon Musk is a businessman and entrepreneur known for leading Tesla, SpaceX, Twitter (now X), and xAI, and has been the wealthiest person globally since 2021. The article traces his life from his birth in South Africa and education in Canada and the U.S., through his founding of companies like Zip2, PayPal, and SpaceX, and details his later ventures, political activities, and controversies.",
+  "key_entities": {
+    "people": [
+      "Elon Reeve Musk",
+      "Kimbal Musk",
+      "Errol Musk",
+      "Donald Trump",
+      "Martin Eberhard",
+      "Peter Thiel"
+    ],
+    "organizations": [
+      "Tesla",
+      "SpaceX",
+      "Twitter (X)",
+      "PayPal",
+      "Zip2",
+      "Neuralink",
+      "The Boring Company",
+      "NASA",
+      "University of Pennsylvania"
+    ],
+    "locations": [
+      "Pretoria, South Africa",
+      "Canada",
+      "University of Pennsylvania",
+      "California",
+      "International Space Station (ISS)",
+      "Crimea",
+      "Las Vegas"
+    ]
+  },
+  "sections": [
+    "Early life",
+    "Education",
+    "Business career",
+    "Zip2",
+    "X.com and PayPal",
+    "SpaceX",
+    "Starlink",
+    "Tesla",
+    "SolarCity and Tesla Energy",
+    "Neuralink",
+    "The Boring Company",
+    "X Corp."
+  ],
+  "quiz": [
+    {
+      "question": "What was the name of the online payment company co-founded by Musk that later merged to form PayPal?",
+      "options": [
+        "Zip2",
+        "Confinity",
+        "X.com",
+        "Neuralink"
+      ],
+      "answer": "X.com",
+      "difficulty": "easy",
+      "explanation": "Musk co-founded X.com in 1999, which later merged with Confinity to form PayPal."
+    },
+    {
+      "question": "Musk emigrated to Canada in 1989. How did he obtain Canadian citizenship at birth?",
+      "options": [
+        "Through his father, who was an engineer in Canada",
+        "By applying for a passport while attending the University of Pretoria",
+        "Through his Canadian-born mother",
+        "By marrying a Canadian citizen"
+      ],
+      "answer": "Through his Canadian-born mother",
+      "difficulty": "medium",
+      "explanation": "Musk obtained Canadian citizenship at birth through his mother, Maye Haldeman, who was born in Saskatchewan, Canada."
+    },
+    {
+      "question": "In what year did eBay acquire PayPal, resulting in Musk receiving $175.8 million for his shares?",
+      "options": [
+        "1999",
+        "2002",
+        "2004",
+        "2008"
+      ],
+      "answer": "2002",
+      "difficulty": "hard",
+      "explanation": "PayPal was acquired by eBay for $1.5 billion in stock in 2002."
+    },
+    {
+      "question": "Which major milestone did SpaceX achieve in 2012, marking a first for a commercial spacecraft?",
+      "options": [
+        "Successfully landing the first stage of a Falcon 9",
+        "Launching the Falcon Heavy",
+        "Docking the Dragon vehicle with the ISS",
+        "Launching its first crewed flight"
+      ],
+      "answer": "Docking the Dragon vehicle with the ISS",
+      "difficulty": "medium",
+      "explanation": "In 2012, the Dragon vehicle docked with the ISS, a first for a commercial spacecraft."
+    },
+    {
+      "question": "What was the estimated net worth of Elon Musk as of October 2025, according to Forbes?",
+      "options": [
+        "Around $100 billion",
+        "Around $500 billion",
+        "Around $1 trillion",
+        "Around $175.8 million"
+      ],
+      "answer": "Around $500 billion",
+      "difficulty": "easy",
+      "explanation": "As of October 2025, Forbes estimates his net worth to be around $500 billion."
+    },
+    {
+      "question": "After Donald Trump's inauguration in early 2025, what specific role did Musk serve in the administration before leaving?",
+      "options": [
+        "Secretary of Technology",
+        "Head of the Department of Energy",
+        "Senior Advisor to the President and de facto head of DOGE",
+        "Ambassador to South Africa"
+      ],
+      "answer": "Senior Advisor to the President and de facto head of DOGE",
+      "difficulty": "medium",
+      "explanation": "Musk served as Senior Advisor to the President and as the de facto head of DOGE after Trump's inauguration in early 2025."
+    }
+  ],
+  "related_topics": [
+    "Space Exploration",
+    "Electric Vehicles (EVs)",
+    "Fintech and E-commerce",
+    "Artificial Intelligence (AI)",
+    "Neurotechnology"
+  ]
+}

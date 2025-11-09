@@ -1,0 +1,111 @@
+{
+  "summary": "Albert Einstein was a German-born theoretical physicist best known for developing the theory of relativity and the mass–energy equivalence formula E = mc². He received the 1921 Nobel Prize for his discovery of the law of the photoelectric effect. Einstein held German, Swiss, and American citizenships throughout his life, fleeing Germany in 1933 due to the rise of the Nazi party.",
+  "key_entities": {
+    "people": [
+      "Albert Einstein",
+      "Mileva Marić",
+      "Franklin D. Roosevelt",
+      "Satyendra Nath Bose",
+      "Max Talmud"
+    ],
+    "organizations": [
+      "Swiss federal polytechnic school",
+      "Swiss Patent Office",
+      "Prussian Academy of Sciences",
+      "Kaiser Wilhelm Institute for Physics"
+    ],
+    "locations": [
+      "Ulm",
+      "Zurich",
+      "Bern",
+      "Berlin",
+      "United States"
+    ]
+  },
+  "sections": [
+    "Life and career",
+    "Childhood, youth and education",
+    "Marriages, relationships and children"
+  ],
+  "quiz": [
+    {
+      "question": "For which specific discovery did Albert Einstein receive the 1921 Nobel Prize in Physics?",
+      "options": [
+        "Developing the general theory of relativity",
+        "His services to theoretical physics, and especially for his discovery of the law of the photoelectric effect",
+        "The formulation of the mass–energy equivalence formula E = mc²",
+        "Laying the groundwork for Bose–Einstein statistics"
+      ],
+      "answer": "His services to theoretical physics, and especially for his discovery of the law of the photoelectric effect",
+      "difficulty": "easy",
+      "explanation": "The article states he received the 1921 Nobel Prize in Physics for 'his services to theoretical physics, and especially for his discovery of the law of the photoelectric effect'."
+    },
+    {
+      "question": "In what year did Einstein publish his four groundbreaking papers, sometimes described as his 'annus mirabilis' (miracle year)?",
+      "options": [
+        "1900",
+        "1905",
+        "1915",
+        "1917"
+      ],
+      "answer": "1905",
+      "difficulty": "easy",
+      "explanation": "The article notes that 'In 1905, sometimes described as his annus mirabilis (miracle year), he published four groundbreaking papers.'"
+    },
+    {
+      "question": "Which major theory did Einstein propose in 1915, extending his system of mechanics to incorporate gravitation?",
+      "options": [
+        "Special theory of relativity",
+        "Quantum electrodynamics",
+        "General theory of relativity",
+        "Unified field theory"
+      ],
+      "answer": "General theory of relativity",
+      "difficulty": "medium",
+      "explanation": "The article states, 'In 1915, he proposed a general theory of relativity that extended his system of mechanics to incorporate gravitation.'"
+    },
+    {
+      "question": "What famous quote did Einstein use to express his objection to quantum theory's introduction of fundamental randomness?",
+      "options": [
+        "\"Imagination is more important than knowledge.\"",
+        "\"The important thing is not to stop questioning.\"",
+        "\"God does not play dice\"",
+        "\"The definition of genius is taking the complex and making it simple.\""
+      ],
+      "answer": "\"God does not play dice\"",
+      "difficulty": "medium",
+      "explanation": "The article mentions that he 'advocated against quantum theory's introduction of fundamental randomness into science's picture of the world, objecting that 'God does not play dice'.'"
+    },
+    {
+      "question": "After acquiring Swiss citizenship in 1901, where did Einstein secure a permanent position?",
+      "options": [
+        "The University of Zurich",
+        "The Swiss Patent Office in Bern",
+        "The Humboldt University of Berlin",
+        "The Argovian cantonal school"
+      ],
+      "answer": "The Swiss Patent Office in Bern",
+      "difficulty": "medium",
+      "explanation": "After acquiring Swiss citizenship in 1901, he 'afterwards secured a permanent position at the Swiss Patent Office in Bern.'"
+    },
+    {
+      "question": "What was the fate of Einstein's daughter, Lieserl, born to Mileva Marić in 1902?",
+      "options": [
+        "She was raised by Einstein's parents in Munich.",
+        "She was adopted by a family in Zurich.",
+        "She died of scarlet fever in infancy or was given up for adoption.",
+        "She moved with Marić to Switzerland and was raised secretly."
+      ],
+      "answer": "She died of scarlet fever in infancy or was given up for adoption.",
+      "difficulty": "hard",
+      "explanation": "A letter of Einstein's suggests that Lieserl 'was either given up for adoption or died of scarlet fever in infancy.'"
+    }
+  ],
+  "related_topics": [
+    "Theoretical Physics",
+    "Quantum Theory",
+    "Special Relativity",
+    "Nobel Prize Winners",
+    "20th Century Science"
+  ]
+}

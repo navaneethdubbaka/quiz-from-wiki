@@ -1,0 +1,14 @@
+TEST_URLS = [
+    "https://en.wikipedia.org/wiki/Python_(programming_language)",
+    "https://en.wikipedia.org/wiki/Artificial_intelligence",
+    "https://en.wikipedia.org/wiki/Climate_change",
+    "https://en.wikipedia.org/wiki/Albert_Einstein",
+    "https://en.wikipedia.org/wiki/World_War_II",
+    "https://en.wikipedia.org/wiki/Photosynthesis",
+    "https://en.wikipedia.org/wiki/Renaissance",
+     "https://en.wikipedia.org/wiki/Machine_learning",
+    "https://en.wikipedia.org/wiki/Elon_Musk",
+    "https://en.wikipedia.org/wiki/Internet_of_things",
+    "https://en.wikipedia.org/wiki/Blockchain"
+
+]

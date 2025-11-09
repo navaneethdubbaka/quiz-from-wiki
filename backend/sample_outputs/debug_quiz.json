@@ -1,0 +1,131 @@
+{
+  "summary": "Python is a high-level, general-purpose programming language developed by Guido van Rossum in the late 1980s, which strongly emphasizes code readability through the use of significant indentation. It is dynamically typed, supports multiple programming paradigms (including object-oriented and functional), and has become one of the world's most popular languages, particularly in the machine learning community. Major revisions include Python 3.0 in 2008, which was not completely backward-compatible with earlier 2.x versions.",
+  "key_entities": {
+    "people": [
+      "Guido van Rossum",
+      "Tim Peters",
+      "Alex Martelli"
+    ],
+    "organizations": [
+      "Centrum Wiskunde & Informatica (CWI)",
+      "Python Software Foundation",
+      "TIOBE Programming Community Index"
+    ],
+    "locations": [
+      "The Netherlands"
+    ]
+  },
+  "sections": [
+    "History",
+    "Design philosophy and features",
+    "Syntax and semantics",
+    "Indentation",
+    "Statements and control flow",
+    "Expressions"
+  ],
+  "quiz": [
+    {
+      "question": "Which programming language was Python designed to succeed, according to Guido van Rossum?",
+      "options": [
+        "C++",
+        "ABC programming language",
+        "SETL",
+        "Pascal"
+      ],
+      "answer": "ABC programming language",
+      "difficulty": "easy",
+      "explanation": "Guido van Rossum began working on Python in the late 1980s as a successor to the ABC programming language."
+    },
+    {
+      "question": "Which core design feature does Python use to delimit blocks of code, distinguishing it from many other languages?",
+      "options": [
+        "Curly brackets ({})",
+        "Semicolons (;)",
+        "Keywords (e.g., END)",
+        "Whitespace indentation"
+      ],
+      "answer": "Whitespace indentation",
+      "difficulty": "easy",
+      "explanation": "Python uses whitespace indentation, rather than curly brackets or keywords, to delimit blocks. This feature is sometimes termed the off-side rule."
+    },
+    {
+      "question": "Why was the 2008 release of Python 3.0 considered a major revision?",
+      "options": [
+        "It was the first version to support dynamic typing.",
+        "It was not completely backward-compatible with earlier versions.",
+        "It introduced the concept of the Benevolent Dictator for Life (BDFL).",
+        "It was the first version to be ranked in the TIOBE index."
+      ],
+      "answer": "It was not completely backward-compatible with earlier versions.",
+      "difficulty": "medium",
+      "explanation": "Python 3.0, released in 2008, was a major revision and not completely backward-compatible with earlier versions."
+    },
+    {
+      "question": "In Python's memory management system, what combination of techniques is utilized?",
+      "options": [
+        "Manual memory allocation and static garbage collection",
+        "Reference counting and a cycle-detecting garbage collector",
+        "Just-in-time compilation and automatic stack cleanup",
+        "Late binding and static type checking"
+      ],
+      "answer": "Reference counting and a cycle-detecting garbage collector",
+      "difficulty": "medium",
+      "explanation": "Python uses dynamic typing and a combination of reference counting and a cycle-detecting garbage collector for memory management."
+    },
+    {
+      "question": "Which statement best describes the difference between Python's `==` operator and its `is` operator?",
+      "options": [
+        "`==` compares object references, while `is` compares object values.",
+        "`==` is used for mathematical comparisons, while `is` is used for string comparisons.",
+        "`==` compares two objects by value, while `is` compares object identities (comparison by reference).",
+        "`==` is used for statically typed variables, while `is` is used for dynamically typed variables."
+      ],
+      "answer": "`==` compares two objects by value, while `is` compares object identities (comparison by reference).",
+      "difficulty": "medium",
+      "explanation": "In Python, == compares two objects by value. Python's is operator may be used to compare object identities (i.e., comparison by reference)."
+    },
+    {
+      "question": "The design of the `with` statement in Python is intended to provide behavior analogous to which common programming idiom or principle?",
+      "options": [
+        "First-class continuations",
+        "Tail call optimization",
+        "Resource-acquisition-is-initialization (RAII)",
+        "Design by contract"
+      ],
+      "answer": "Resource-acquisition-is-initialization (RAII)",
+      "difficulty": "hard",
+      "explanation": "The with statement, which encloses a code block within a context manager, allowing resource-acquisition-is-initialization (RAII)-like behavior and replacing a common try/finally idiom."
+    },
+    {
+      "question": "Why can tuples be used as dictionary keys in Python, while lists cannot?",
+      "options": [
+        "Tuples support string concatenation, whereas lists do not.",
+        "Tuples are immutable, a requirement for dictionary keys in Python.",
+        "Tuples are written with optional parentheses, simplifying their syntax.",
+        "Lists are designed for sequence unpacking, which conflicts with their use as keys."
+      ],
+      "answer": "Tuples are immutable, a requirement for dictionary keys in Python.",
+      "difficulty": "hard",
+      "explanation": "Lists are mutable, and cannot be used as the keys of dictionaries (since dictionary keys must be immutable in Python). Tuples... are immutable and thus can be used as the keys of dictionaries."
+    },
+    {
+      "question": "What is Python's approach to achieving goals, as articulated in contrast to Perl's motto 'there is more than one way to do it'?",
+      "options": [
+        "Performance beats purity.",
+        "Errors should never pass silently.",
+        "Explicit is better than implicit.",
+        "There should be one – and preferably only one – obvious way to do it."
+      ],
+      "answer": "There should be one – and preferably only one – obvious way to do it.",
+      "difficulty": "easy",
+      "explanation": "In contrast to Perl's motto 'there is more than one way to do it', Python advocates an approach where 'there should be one – and preferably only one – obvious way to do it'."
+    }
+  ],
+  "related_topics": [
+    "ABC programming language",
+    "Dynamically typed languages",
+    "Benevolent dictator for life (BDFL)",
+    "TIOBE Programming Community Index",
+    "Monty Python's Flying Circus"
+  ]
+}

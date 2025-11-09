@@ -1,0 +1,125 @@
+{
+  "summary": "Artificial intelligence (AI) is the capability of computational systems to perform tasks associated with human intelligence, such as learning and reasoning. Founded in 1956, the field experienced cycles of optimism and disappointment (AI winters) but saw massive acceleration after 2012 due to the use of GPUs for deep learning and the subsequent development of architectures like the transformer. Modern AI research focuses on goals like natural language processing, perception, and achieving artifi",
+  "key_entities": {
+    "people": [
+      "Noam Chomsky",
+      "Margaret Masterman"
+    ],
+    "organizations": [
+      "OpenAI",
+      "Google DeepMind",
+      "Meta"
+    ],
+    "locations": []
+  },
+  "sections": [
+    "Goals",
+    "Reasoning and problem-solving",
+    "Knowledge representation",
+    "Planning and decision-making",
+    "Learning",
+    "Natural language processing",
+    "Perception",
+    "Social intelligence",
+    "General intelligence",
+    "Techniques",
+    "Search and optimization",
+    "State space search",
+    "Local search",
+    "Logic",
+    "Probabilistic methods for uncertain reasoning"
+  ],
+  "quiz": [
+    {
+      "question": "Artificial intelligence was founded as an academic discipline in which year?",
+      "options": [
+        "1984",
+        "1956",
+        "2012",
+        "1995"
+      ],
+      "answer": "1956",
+      "difficulty": "easy",
+      "explanation": "The article states, 'Artificial intelligence was founded as an academic discipline in 1956.'"
+    },
+    {
+      "question": "What term is used to describe the historical periods of disappointment and loss of funding in the field of AI?",
+      "options": [
+        "The Great Stagnation",
+        "AI Winters",
+        "The Deep Learning Drought",
+        "The Computational Collapse"
+      ],
+      "answer": "AI Winters",
+      "difficulty": "medium",
+      "explanation": "The article refers to these periods as 'periods of disappointment and loss of funding, known as AI winters.'"
+    },
+    {
+      "question": "Which subfield of AI focuses on enabling programs to read, write, and communicate in human languages?",
+      "options": [
+        "Affective Computing",
+        "Knowledge Representation",
+        "Natural Language Processing",
+        "Computational Learning Theory"
+      ],
+      "answer": "Natural Language Processing",
+      "difficulty": "easy",
+      "explanation": "Natural language processing (NLP) allows programs to read, write and communicate in human languages."
+    },
+    {
+      "question": "Which deep learning architecture, introduced after 2017, significantly accelerated the growth of advanced generative AI?",
+      "options": [
+        "Recurrent Neural Networks (RNNs)",
+        "Convolutional Neural Networks (CNNs)",
+        "The Transformer Architecture",
+        "Long Short-Term Memory (LSTM)"
+      ],
+      "answer": "The Transformer Architecture",
+      "difficulty": "hard",
+      "explanation": "The article notes that growth accelerated further after 2017 'with the transformer architecture.'"
+    },
+    {
+      "question": "According to the article, which concept is used in automated decision-making to assign a numerical value measuring how much an agent prefers a certain situation?",
+      "options": [
+        "Expected Utility",
+        "Transition Model",
+        "Policy",
+        "Utility"
+      ],
+      "answer": "Utility",
+      "difficulty": "medium",
+      "explanation": "The decision-making agent assigns a number to each situation (called the 'utility') that measures how much the agent prefers it."
+    },
+    {
+      "question": "What type of machine learning involves the agent being rewarded for desirable responses and punished for undesirable ones?",
+      "options": [
+        "Supervised Learning",
+        "Unsupervised Learning",
+        "Transfer Learning",
+        "Reinforcement Learning"
+      ],
+      "answer": "Reinforcement Learning",
+      "difficulty": "medium",
+      "explanation": "In reinforcement learning, the agent is rewarded for good responses and punished for bad ones."
+    },
+    {
+      "question": "Which type of logic assigns a 'degree of truth' between 0 and 1, allowing it to handle propositions that are vague and partially true?",
+      "options": [
+        "Predicate Logic",
+        "Formal Logic",
+        "Fuzzy Logic",
+        "Propositional Logic"
+      ],
+      "answer": "Fuzzy Logic",
+      "difficulty": "medium",
+      "explanation": "Fuzzy logic assigns a 'degree of truth' between 0 and 1. It can therefore handle propositions that are vague and partially true."
+    }
+  ],
+  "related_topics": [
+    "Machine Learning",
+    "Computer Science History",
+    "Robotics",
+    "Cognitive Science",
+    "Ethics of Technology"
+  ]
+}

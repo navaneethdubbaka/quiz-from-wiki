@@ -1,0 +1,111 @@
+{
+  "summary": "Present-day climate change, encompassing global warming and its wider effects, is primarily driven by human activities like fossil fuel burning, which releases greenhouse gases, notably CO2. The article details the severe environmental and societal impacts, including extreme weather, sea level rise, and species extinction, while outlining global mitigation efforts and the complex scientific factors influencing temperature trends and climate feedbacks.",
+  "key_entities": {
+    "people": [
+      "James Hansen"
+    ],
+    "organizations": [
+      "World Health Organization",
+      "IPCC",
+      "UNEP",
+      "NASA"
+    ],
+    "locations": [
+      "Arctic",
+      "Greenland",
+      "Northern Hemisphere",
+      "South Pole"
+    ]
+  },
+  "sections": [
+    "Terminology",
+    "Global temperature rise",
+    "Warming since the Industrial Revolution",
+    "Differences by region",
+    "Future global temperatures",
+    "Causes of recent global temperature rise",
+    "Greenhouse gases",
+    "Climate change feedbacks"
+  ],
+  "quiz": [
+    {
+      "question": "What is the primary gas driving global warming, according to the article?",
+      "options": [
+        "Methane",
+        "Carbon dioxide",
+        "Nitrous oxide",
+        "Water vapour"
+      ],
+      "answer": "Carbon dioxide",
+      "difficulty": "easy",
+      "explanation": "The article states, 'Carbon dioxide, the primary gas driving global warming, has increased in concentration by about 50% since the pre-industrial era...'"
+    },
+    {
+      "question": "Scientifically, what term refers only to the increased global average surface temperature?",
+      "options": [
+        "Climate crisis",
+        "Global warming",
+        "Climate change",
+        "Global heating"
+      ],
+      "answer": "Global warming",
+      "difficulty": "easy",
+      "explanation": "In the 'Terminology' section, it is clarified: 'Scientifically, global warming refers only to increased global average surface temperature, while climate change describes both global warming and its effects...'"
+    },
+    {
+      "question": "Which region is warming between three and four times faster than the rest of the world?",
+      "options": [
+        "The Southern Hemisphere",
+        "Equatorial regions",
+        "The Arctic",
+        "Temperate zones"
+      ],
+      "answer": "The Arctic",
+      "difficulty": "medium",
+      "explanation": "The section 'Differences by region' notes that 'Arctic surface temperatures are increasing between three and four times faster than in the rest of the world.'"
+    },
+    {
+      "question": "Under the 2015 Paris Agreement, nations collectively agreed to keep warming 'well under' what temperature threshold?",
+      "options": [
+        "1.5 °C",
+        "2 °C",
+        "2.8 °C",
+        "5.0 °F"
+      ],
+      "answer": "2 °C",
+      "difficulty": "hard",
+      "explanation": "The article mentions, 'Under the 2015 Paris Agreement, nations collectively agreed to keep warming 'well under 2 °C'.'"
+    },
+    {
+      "question": "What phenomenon caused a short slower period of warming between 1998 and 2013, known as the 'global warming hiatus'?",
+      "options": [
+        "Increased volcanic activity",
+        "Positive phases of PDO and AMO",
+        "Negative phases of PDO and AMO",
+        "Increased solar luminosity"
+      ],
+      "answer": "Negative phases of PDO and AMO",
+      "difficulty": "medium",
+      "explanation": "The section 'Warming since the Industrial Revolution' states that negative phases of the Pacific Decadal Oscillation (PDO) and Atlantic Multidecadal Oscillation (AMO) caused this short slower period of warming."
+    },
+    {
+      "question": "Which of the following is NOT listed in the article as a clean energy source that can replace fossil fuels?",
+      "options": [
+        "Solar power",
+        "Hydro power",
+        "Geothermal power",
+        "Nuclear power"
+      ],
+      "answer": "Geothermal power",
+      "difficulty": "medium",
+      "explanation": "The article lists wind, solar, hydro, and nuclear power as energy sources that do not produce significant carbon pollution. Geothermal power is not mentioned."
+    }
+  ],
+  "related_topics": [
+    "Fossil Fuels",
+    "Greenhouse Effect",
+    "Paris Agreement",
+    "Ocean Acidification",
+    "Renewable Energy"
+  ]
+}

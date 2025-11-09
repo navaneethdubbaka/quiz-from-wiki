@@ -1,0 +1,108 @@
+{
+  "summary": "Python is a high-level, multi-paradigm programming language emphasizing code readability through significant indentation. Conceived by Guido van Rossum in the late 1980s, Python is dynamically typed and garbage-collected, supporting paradigms like object-oriented and functional programming. It is widely used in machine learning and introductory education, with only the 3.x series currently supported.",
+  "key_entities": {
+    "people": [
+      "Guido van Rossum",
+      "Tim Peters",
+      "Alex Martelli"
+    ],
+    "organizations": [
+      "Centrum Wiskunde & Informatica (CWI)",
+      "Python Software Foundation",
+      "TIOBE Programming Community Index"
+    ],
+    "locations": [
+      "Netherlands"
+    ]
+  },
+  "sections": [
+    "History",
+    "Design philosophy and features",
+    "Syntax and semantics",
+    "Indentation",
+    "Statements and control flow",
+    "Expressions",
+    "Typing"
+  ],
+  "quiz": [
+    {
+      "question": "What is the primary feature Python's design philosophy emphasizes for code readability?",
+      "options": [
+        "Use of curly brackets",
+        "Significant indentation",
+        "Mandatory semicolons",
+        "Static type checking"
+      ],
+      "answer": "Significant indentation",
+      "difficulty": "easy",
+      "explanation": "Python's design philosophy emphasizes code readability with the use of significant indentation to delimit blocks."
+    },
+    {
+      "question": "Who began working on Python in the late 1980s as a successor to the ABC programming language?",
+      "options": [
+        "Tim Peters",
+        "Alex Martelli",
+        "Guido van Rossum",
+        "James Gosling"
+      ],
+      "answer": "Guido van Rossum",
+      "difficulty": "easy",
+      "explanation": "Guido van Rossum began working on Python in the late 1980s as a successor to the ABC programming language."
+    },
+    {
+      "question": "From which source does the name Python derive?",
+      "options": [
+        "A type of snake",
+        "A Greek mythological figure",
+        "The British comedy series Monty Python's Flying Circus",
+        "The ABC programming language successor project name"
+      ],
+      "answer": "The British comedy series Monty Python's Flying Circus",
+      "difficulty": "medium",
+      "explanation": "The name Python derives from the British comedy series Monty Python's Flying Circus."
+    },
+    {
+      "question": "What is the contraction used in Python for the 'else if' statement?",
+      "options": [
+        "elseif",
+        "else_if",
+        "elif",
+        "eif"
+      ],
+      "answer": "elif",
+      "difficulty": "medium",
+      "explanation": "The if statement uses 'elif' (a contraction of else if) for conditional execution."
+    },
+    {
+      "question": "What is the name given to the assignment expression operator (:=) introduced in Python 3.8?",
+      "options": [
+        "The assignment arrow",
+        "The walrus operator",
+        "The binding colon",
+        "The expression equals"
+      ],
+      "answer": "The walrus operator",
+      "difficulty": "medium",
+      "explanation": "The syntax :=, called the 'walrus operator', was introduced in Python 3.8 to assign values to variables as part of a larger expression."
+    },
+    {
+      "question": "Which statement correctly describes the relationship between lists, tuples, and dictionary keys in Python?",
+      "options": [
+        "Lists are immutable and can be used as dictionary keys.",
+        "Tuples are mutable and cannot be used as dictionary keys.",
+        "Lists are mutable and cannot be used as dictionary keys.",
+        "Both lists and tuples can be used as dictionary keys."
+      ],
+      "answer": "Lists are mutable and cannot be used as dictionary keys.",
+      "difficulty": "hard",
+      "explanation": "Lists are mutable and cannot be used as the keys of dictionaries (since dictionary keys must be immutable in Python). Tuples are immutable and thus can be used as keys."
+    }
+  ],
+  "related_topics": [
+    "Programming Languages",
+    "Object-Oriented Programming",
+    "Dynamic Typing",
+    "Garbage Collection",
+    "Software Development"
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "summary": "The Internet of Things (IoT) describes physical objects embedded with sensors and software that connect and exchange data over networks. While popular in consumer smart homes, its primary applications lie in commercial and industrial sectors, such as asset tracking, which accounts for 22% of the market. The growth of IoT necessitates addressing significant concerns regarding privacy and security.",
+  "key_entities": {
+    "people": [
+      "Kevin Ashton",
+      "Peter T. Lewis",
+      "Mark Weiser",
+      "Reza Raji",
+      "Bill Joy",
+      "Cornelius \"Pete\" Peterson"
+    ],
+    "organizations": [
+      "Stanford Artificial Intelligence Laboratory",
+      "Carnegie Mellon University Computer Science Department",
+      "Procter & Gamble",
+      "Massachusetts Institute of Technology's Auto-ID Center",
+      "Cisco Systems"
+    ],
+    "locations": [
+      "Washington, D.C.",
+      "Davos",
+      "Stanford",
+      "Middle-earth"
+    ]
+  },
+  "sections": [
+    "Background",
+    "History",
+    "Applications",
+    "Consumers",
+    "Home automation",
+    "Elder care",
+    "Organizations",
+    "Medical and healthcare"
+  ],
+  "quiz": [
+    {
+      "question": "What represents the largest single application of IoT, accounting for 22% of the total market?",
+      "options": [
+        "Smart home products and appliances",
+        "Commercial asset tracking and fleet management",
+        "Industrial monitoring and smart metering",
+        "Connected healthcare systems"
+      ],
+      "answer": "Commercial asset tracking and fleet management",
+      "difficulty": "medium",
+      "explanation": "Commercial asset tracking and fleet management represent the largest single application of IoT, accounting for 22% of the total market."
+    },
+    {
+      "question": "Why has the term \"Internet of Things\" been considered a misnomer?",
+      "options": [
+        "Because the technology is primarily focused on software, not physical objects.",
+        "Because devices do not need to be connected to the public internet; they only need to be connected to a network and be individually addressable.",
+        "Because the field only encompasses computer science engineering, excluding electronics.",
+        "Because the initial concept was developed before the internet was widely available."
+      ],
+      "answer": "Because devices do not need to be connected to the public internet; they only need to be connected to a network and be individually addressable.",
+      "difficulty": "easy",
+      "explanation": "The article states that 'Internet of Things' has been considered a misnomer because devices do not need to be connected to the public internet; they only need to be connected to a network and be individually addressable."
+    },
+    {
+      "question": "What was the first ARPANET-connected appliance, developed at Carnegie Mellon University in 1982?",
+      "options": [
+        "The Prancing Pony vending machine",
+        "A departmental Coca-Cola vending machine",
+        "A computer-controlled thermostat",
+        "A wireless sensor network node"
+      ],
+      "answer": "A departmental Coca-Cola vending machine",
+      "difficulty": "easy",
+      "explanation": "In 1982, an early concept of a network connected smart device was constructed as an Internet interface for sensors installed in the Carnegie Mellon University Computer Science Department's departmental Coca-Cola vending machine, which gained prominence as the first ARPANET-connected appliance."
+    },
+    {
+      "question": "Who is credited with independently coining the term \"Internet of things\" in 1999?",
+      "options": [
+        "Mark Weiser",
+        "Peter T. Lewis",
+        "Kevin Ashton",
+        "Bill Joy"
+      ],
+      "answer": "Kevin Ashton",
+      "difficulty": "medium",
+      "explanation": "The term \"Internet of things\" was coined independently by Kevin Ashton of Procter & Gamble in 1999."
+    },
+    {
+      "question": "According to Cisco Systems, based on the things/people ratio, when was the IoT considered \"born\"?",
+      "options": [
+        "1991-1994",
+        "2008-2009",
+        "1999-2000",
+        "2003-2004"
+      ],
+      "answer": "2008-2009",
+      "difficulty": "hard",
+      "explanation": "Cisco Systems estimated that the IoT was 'born' between 2008 and 2009, when the things/people ratio grew from 0.08 in 2003 to 1.84 in 2010."
+    },
+    {
+      "question": "What is the primary concern associated with the growth and diffusion of IoT technologies, as mentioned in the article?",
+      "options": [
+        "High manufacturing costs",
+        "Privacy and security risks",
+        "Lack of standardized communication protocols",
+        "Limited battery life of sensors"
+      ],
+      "answer": "Privacy and security risks",
+      "difficulty": "easy",
+      "explanation": "Several concerns exist regarding the risks associated with the growth and diffusion of IoT technologies, particularly in the areas of privacy and security."
+    }
+  ],
+  "related_topics": [
+    "Ubiquitous Computing",
+    "Wireless Sensor Networks",
+    "Cybersecurity",
+    "Home Automation",
+    "Radio-Frequency Identification (RFID)"
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "id": 2,
+  "url": "https://en.wikipedia.org/wiki/Python_(programming_language)",
+  "title": "Python (programming language)",
+  "date_generated": "2025-11-08T07:17:00.518206",
+  "summary": "Python is a high-level, general-purpose programming language developed by Guido van Rossum, emphasizing code readability through significant indentation and supporting multiple programming paradigms like object-oriented and functional programming. Since its major revision in Python 3.0 (2008), the language has become widely popular, especially in machine learning, and relies on dynamic typing combined with garbage collection for memory management. Its core philosophy, summarized in the 'Zen of Python,' advocates for clarity and simplicity over complexity.",
+  "key_entities": {
+    "people": [
+      "Guido van Rossum",
+      "Tim Peters",
+      "Alex Martelli"
+    ],
+    "organizations": [
+      "Centrum Wiskunde & Informatica (CWI)",
+      "Python Software Foundation",
+      "TIOBE Programming Community Index",
+      "PyPy",
+      "CPython"
+    ],
+    "locations": [
+      "The Netherlands"
+    ]
+  },
+  "sections": [
+    "Python (programming language)",
+    "History",
+    "Design philosophy and features",
+    "Syntax and semantics",
+    "Indentation",
+    "Statements and control flow",
+    "Expressions",
+    "Typing",
+    "Arithmetic operations",
+    "Libraries",
+    "Development environments",
+    "Implementations"
+  ],
+  "quiz": [
+    {
+      "question": "What is the primary mechanism Python uses, unlike many other languages, to delimit blocks of code?",
+      "options": [
+        "Curly brackets ({})",
+        "Keywords like BEGIN and END",
+        "The use of significant whitespace indentation",
+        "Semicolons (;) at the end of every statement"
+      ],
+      "answer": "The use of significant whitespace indentation",
+      "difficulty": "easy",
+      "explanation": "Python uses whitespace indentation, rather than curly brackets or keywords, to delimit blocks. This feature is sometimes termed the off-side rule."
+    },
+    {
+      "question": "Why was the release of Python 3.0 in 2008 a particularly significant event in the language's history?",
+      "options": [
+        "It was the first version to support object-oriented programming.",
+        "It was not completely backward-compatible with earlier versions.",
+        "It introduced optional static typing for the first time.",
+        "It marked the point where Guido van Rossum resigned as BDFL."
+      ],
+      "answer": "It was not completely backward-compatible with earlier versions.",
+      "difficulty": "medium",
+      "explanation": "Python 3.0, released in 2008, was a major revision and not completely backward-compatible with earlier versions."
+    },
+    {
+      "question": "According to the article, Python is often referred to as a 'glue language' because of which design objective?",
+      "options": [
+        "Its ability to manage memory using both reference counting and cycle detection.",
+        "Its compatibility with 8-bit AVR microcontrollers.",
+        "Its purpose to integrate components written in other languages.",
+        "Its adherence to the principle that 'Explicit is better than implicit.'"
+      ],
+      "answer": "Its purpose to integrate components written in other languages.",
+      "difficulty": "medium",
+      "explanation": "Python is often referred to as a 'glue language' because it is purposely designed to be able to integrate components written in other languages."
+    },
+    {
+      "question": "Which of the following is true regarding Python's implementation of arithmetic division since version 3.0?",
+      "options": [
+        "The / operator performs classic division, yielding an integer result if both operands are integers.",
+        "The / operator always represents floating-point division.",
+        "The // operator was removed in favor of the single / operator.",
+        "Division between integers is only possible using the math module."
+      ],
+      "answer": "The / operator always represents floating-point division.",
+      "difficulty": "medium",
+      "explanation": "The current version of Python (i.e., since 3.0) changed the / operator to always represent floating-point division, e.g., 5/2 == 2.5."
+    },
+    {
+      "question": "What is the primary difference between Python lists and tuples that affects their use as dictionary keys?",
+      "options": [
+        "Lists are dynamically typed, while tuples are statically typed.",
+        "Tuples are immutable and thus can be used as dictionary keys, while lists are mutable and cannot.",
+        "Tuples support sequence unpacking, while lists do not.",
+        "Lists are created using parentheses, while tuples are created using brackets."
+      ],
+      "answer": "Tuples are immutable and thus can be used as dictionary keys, while lists are mutable and cannot.",
+      "difficulty": "hard",
+      "explanation": "Lists are mutable, and cannot be used as the keys of dictionaries (since dictionary keys must be immutable in Python). Tuples... are immutable and thus can be used as the keys of dictionaries, provided that all of the tuple's elements are immutable."
+    },
+    {
+      "question": "The term 'pythonic' is a common neologism in the Python community. What does it generally refer to?",
+      "options": [
+        "Code that maximizes execution speed over readability.",
+        "Code that uses Python idioms well and conforms to the language's minimalist philosophy.",
+        "Code written exclusively using the standard CPython implementation.",
+        "Code that strictly avoids the use of functional programming features."
+      ],
+      "answer": "Code that uses Python idioms well and conforms to the language's minimalist philosophy.",
+      "difficulty": "easy",
+      "explanation": "A common neologism in the Python community is pythonic, which has a broad range of meanings related to program style: Pythonic code may use Python idioms well; be natural or show fluency in the language; or conform with Python's minimalist philosophy and emphasis on readability."
+    },
+    {
+      "question": "Which alternative implementation of Python is specifically noted for often significantly improving speed relative to CPython through the use of a just-in-time compiler?",
+      "options": [
+        "MicroPython",
+        "Codon",
+        "Pyston",
+        "PyPy"
+      ],
+      "answer": "PyPy",
+      "difficulty": "hard",
+      "explanation": "PyPy is a faster, compliant interpreter of Python 2.7 and 3.10. PyPy's just-in-time compiler often improves speed significantly relative to CPython."
+    },
+    {
+      "question": "Despite being dynamically typed, Python is considered strongly typed because it:",
+      "options": [
+        "Requires the use of type annotations (e.g., via the `typing` module).",
+        "Forbids operations that are poorly defined, such as adding a number and a string.",
+        "Uses late binding, resolving variable names during execution.",
+        "Enforces the distinction between expressions and statements."
+      ],
+      "answer": "Forbids operations that are poorly defined, such as adding a number and a string.",
+      "difficulty": "medium",
+      "explanation": "Despite being dynamically typed, Python is strongly typed, forbidding operations that are poorly defined (e.g., adding a number and a string) rather than quietly attempting to interpret them."
+    }
+  ],
+  "related_topics": [
+    "ABC programming language",
+    "Programming paradigm",
+    "Dynamically typed language",
+    "CPython",
+    "Monty Python's Flying Circus"
+  ]
+}
