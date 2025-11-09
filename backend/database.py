@@ -23,6 +23,26 @@ load_dotenv()
 # In production, this should be set via environment variables
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./quiz_generator.db")
 
+# Log what DATABASE_URL we're using (for debugging)
+print(f"🔍 DATABASE_URL from environment: {'SET' if os.getenv('DATABASE_URL') else 'NOT SET'}")
+if DATABASE_URL:
+    # Mask password in logs for security
+    if "@" in DATABASE_URL:
+        # Hide password: postgresql://user:password@host -> postgresql://user:***@host
+        parts = DATABASE_URL.split("@")
+        if len(parts) == 2:
+            user_pass = parts[0].split("://")[1] if "://" in parts[0] else parts[0]
+            if ":" in user_pass:
+                user = user_pass.split(":")[0]
+                safe_url = DATABASE_URL.split("://")[0] + "://" + user + ":***@" + parts[1]
+            else:
+                safe_url = DATABASE_URL.split("@")[-1]
+        else:
+            safe_url = DATABASE_URL
+    else:
+        safe_url = DATABASE_URL
+    print(f"📊 DATABASE_URL: {safe_url}")
+
 # Log database configuration (without sensitive info)
 if DATABASE_URL.startswith("postgresql"):
     # Mask password in logs
@@ -31,13 +51,25 @@ if DATABASE_URL.startswith("postgresql"):
 elif DATABASE_URL.startswith("sqlite"):
     print(f"📊 Database: SQLite - {DATABASE_URL}")
 else:
-    print(f"📊 Database: Unknown type - {DATABASE_URL[:20]}...")
+    print(f"📊 Database: Unknown type - {DATABASE_URL[:50]}...")
 
 # Validate DATABASE_URL is set for production
-if not DATABASE_URL or DATABASE_URL == "sqlite:///./quiz_generator.db":
-    if os.getenv("RENDER") or os.getenv("DATABASE_URL"):
-        print("⚠️ WARNING: DATABASE_URL not set or using SQLite in production!")
-        print("   Please set DATABASE_URL environment variable to your PostgreSQL connection string")
+# Check if we're on Render (RENDER environment variable is set)
+is_render = os.getenv("RENDER") is not None
+if is_render:
+    if not DATABASE_URL or DATABASE_URL == "sqlite:///./quiz_generator.db" or not DATABASE_URL.startswith("postgresql"):
+        print("⚠️ WARNING: DATABASE_URL not set correctly for Render!")
+        print("   Expected: PostgreSQL connection string (postgresql://...)")
+        print(f"   Got: {DATABASE_URL[:50] if DATABASE_URL else 'NOT SET'}...")
+        print("   Please set DATABASE_URL environment variable in Render Dashboard")
+        print("   Go to: Your Service → Environment → Add DATABASE_URL")
+    elif "localhost" in DATABASE_URL or "127.0.0.1" in DATABASE_URL:
+        print("❌ ERROR: DATABASE_URL contains 'localhost' or '127.0.0.1'!")
+        print("   This won't work on Render - databases are not on localhost")
+        print("   You need to use the Render database connection string")
+        print("   Get it from: Your Database → Connections tab → Internal Database URL")
+        print("   It should look like: postgresql://user:password@hostname.onrender.com:5432/dbname")
+        print("   NOT: postgresql://user:password@localhost:5432/dbname")
 
 # Engine and Session
 # Use connect_args for SQLite to handle file creation
@@ -65,16 +97,24 @@ try:
     )
     db_type = "PostgreSQL" if DATABASE_URL.startswith("postgresql") else "SQLite"
     print(f"✅ Database engine created: {db_type}")
+    
+    # Test connection immediately
+    if DATABASE_URL.startswith("postgresql"):
+        try:
+            from sqlalchemy import text
+            with engine.connect() as conn:
+                conn.execute(text("SELECT 1"))
+            print("✅ Database connection test successful")
+        except Exception as conn_error:
+            print(f"❌ Database connection test failed: {conn_error}")
+            print("   This usually means DATABASE_URL is incorrect or database is not accessible")
+            print("   Please check your DATABASE_URL environment variable in Render")
 except Exception as e:
-    print(f"⚠️ Database engine creation warning: {e}")
-    # Create a minimal engine even if there's an error
-    engine = create_engine(
-        DATABASE_URL,
-        echo=False,
-        pool_pre_ping=True,
-        connect_args=connect_args,
-        **pool_settings
-    )
+    print(f"❌ Database engine creation failed: {e}")
+    print(f"   DATABASE_URL: {DATABASE_URL[:50] if DATABASE_URL else 'NOT SET'}...")
+    print("   Please check your DATABASE_URL environment variable")
+    # Re-raise the error so it's clear what's wrong
+    raise
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
