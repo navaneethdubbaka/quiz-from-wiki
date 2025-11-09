@@ -20,17 +20,8 @@ load_dotenv()
 # DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 # Default to SQLite if DATABASE_URL is not set (for local dev)
-# In production/Vercel, this should be set via environment variables
+# In production, this should be set via environment variables
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./quiz_generator.db")
-
-# Handle Vercel Postgres connection string format
-# Vercel Postgres uses POSTGRES_URL, POSTGRES_PRISMA_URL, or POSTGRES_URL_NON_POOLING
-if not DATABASE_URL or DATABASE_URL.startswith("sqlite"):
-    # Try Vercel Postgres environment variables
-    vercel_postgres_url = os.getenv("POSTGRES_URL") or os.getenv("POSTGRES_PRISMA_URL") or os.getenv("POSTGRES_URL_NON_POOLING")
-    if vercel_postgres_url:
-        DATABASE_URL = vercel_postgres_url
-        print(f"✅ Using Vercel Postgres connection string")
 
 # Engine and Session
 # Use connect_args for SQLite to handle file creation
@@ -40,23 +31,13 @@ pool_settings = {}
 if DATABASE_URL.startswith("sqlite"):
     connect_args = {"check_same_thread": False}
 elif DATABASE_URL.startswith("postgresql"):
-    # PostgreSQL connection pool settings
-    # For Render (long-running), use larger pool
-    # For Vercel (serverless), use smaller pool
+    # PostgreSQL connection pool settings for long-running processes
     connect_args = {}
-    is_serverless = os.getenv("VERCEL") is not None
-    if is_serverless:
-        pool_settings = {
-            "pool_size": 1,  # Small pool for serverless
-            "max_overflow": 0,
-            "pool_recycle": 300,  # Recycle connections after 5 minutes
-        }
-    else:
-        pool_settings = {
-            "pool_size": 5,  # Larger pool for long-running processes
-            "max_overflow": 10,
-            "pool_recycle": 3600,  # Recycle connections after 1 hour
-        }
+    pool_settings = {
+        "pool_size": 5,  # Connection pool size
+        "max_overflow": 10,  # Maximum overflow connections
+        "pool_recycle": 3600,  # Recycle connections after 1 hour
+    }
 
 try:
     engine = create_engine(
@@ -113,5 +94,4 @@ def init_db():
         print("✅ Database tables created successfully!")
     except Exception as e:
         print(f"⚠️ Database initialization warning: {e}")
-        # Don't fail if DB init fails (might be connection issue or read-only filesystem)
-        # In serverless, this is often expected
+        # Don't fail if DB init fails (might be connection issue)

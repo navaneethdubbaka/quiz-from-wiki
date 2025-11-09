@@ -12,11 +12,11 @@ from models import QuizGenerateRequest, QuizGenerateResponse, QuizHistoryItem, E
 from scraper import scrape_wikipedia
 from llm_quiz_generator import generate_quiz, validate_quiz_output
 
-# Database initialization flag (lazy initialization for serverless)
+# Database initialization flag
 _db_initialized = False
 
 def ensure_db_initialized():
-    """Lazy database initialization - only when needed"""
+    """Initialize database - called on startup"""
     global _db_initialized
     if not _db_initialized:
         try:
@@ -25,18 +25,11 @@ def ensure_db_initialized():
             print("✅ Database initialized")
         except Exception as e:
             print(f"⚠️ Database initialization warning: {e}")
-            # Don't fail if DB init fails (might be connection issue or read-only filesystem)
-            # Mark as initialized anyway to prevent repeated attempts
+            # Don't fail if DB init fails (might be connection issue)
             _db_initialized = True
 
-# CORS origins - allow local dev and Vercel deployments
+# CORS origins - allow local dev and production deployments
 allowed_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173").split(",")
-
-# Add Vercel URL if available
-if os.getenv("VERCEL_URL"):
-    vercel_url = f"https://{os.getenv('VERCEL_URL')}"
-    if vercel_url not in allowed_origins:
-        allowed_origins.append(vercel_url)
 
 # Initialize FastAPI app with lifespan for database initialization
 try:
@@ -45,10 +38,7 @@ try:
     @asynccontextmanager
     async def lifespan(app: FastAPI):
         # Startup: Initialize database
-        # For Render (long-running process), initialize on startup
-        # For Vercel (serverless), initialize lazily on first request
-        if not os.getenv("VERCEL"):
-            ensure_db_initialized()
+        ensure_db_initialized()
         yield
         # Shutdown: cleanup if needed
         pass
@@ -70,16 +60,12 @@ except ImportError:
     @app.on_event("startup")
     def startup_event():
         """Initialize database tables on startup"""
-        # For Render (long-running process), initialize on startup
-        # For Vercel (serverless), initialize lazily on first request
-        if not os.getenv("VERCEL"):
-            ensure_db_initialized()
+        ensure_db_initialized()
 
 # Configure CORS (allow frontend to communicate with backend)
-# In Vercel, we allow all origins since frontend and backend are on same domain
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"] if os.getenv("VERCEL") else allowed_origins,
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -169,7 +155,7 @@ def generate_quiz_endpoint(request: QuizGenerateRequest, db: Session = Depends(g
     Returns:
         QuizGenerateResponse with the generated quiz data
     """
-    # Ensure database is initialized (lazy init for serverless)
+    # Ensure database is initialized
     ensure_db_initialized()
     try:
         url = request.url.strip()
@@ -282,7 +268,7 @@ def get_history(db: Session = Depends(get_db)):
     Returns:
         List of QuizHistoryItem objects
     """
-    # Ensure database is initialized (lazy init for serverless)
+    # Ensure database is initialized
     ensure_db_initialized()
     try:
         print("\n📚 Fetching quiz history...")
@@ -323,7 +309,7 @@ def get_quiz_by_id(quiz_id: int, db: Session = Depends(get_db)):
     Returns:
         QuizGenerateResponse with the quiz data
     """
-    # Ensure database is initialized (lazy init for serverless)
+    # Ensure database is initialized
     ensure_db_initialized()
     try:
         print(f"\n🔍 Fetching quiz with ID: {quiz_id}")

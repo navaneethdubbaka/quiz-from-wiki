@@ -28,9 +28,4 @@ Thumbs.db
 # Node modules (for frontend later)
 node_modules/
 
-# Vercel
-.vercel
-
-# Copied backend files (created during build)
-api/backend/
 ```
