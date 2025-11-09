@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from datetime import datetime
 import json
+import os
 
 # Import our modules
 from database import get_db, init_db, Quiz
@@ -11,15 +12,22 @@ from models import QuizGenerateRequest, QuizGenerateResponse, QuizHistoryItem, E
 from scraper import scrape_wikipedia
 from llm_quiz_generator import generate_quiz, validate_quiz_output
 
-# Initialize FastAPI app
-app = FastAPI(
-    title="AI Wiki Quiz Generator API",
-    description="Generate educational quizzes from Wikipedia articles using AI",
-    version="1.0.0"
-)
+# Database initialization flag (lazy initialization for serverless)
+_db_initialized = False
+
+def ensure_db_initialized():
+    """Lazy database initialization - only when needed"""
+    global _db_initialized
+    if not _db_initialized:
+        try:
+            init_db()
+            _db_initialized = True
+            print("✅ Database initialized")
+        except Exception as e:
+            print(f"⚠️ Database initialization warning: {e}")
+            # Don't fail if DB init fails (might be connection issue)
 
 # CORS origins - allow local dev and Vercel deployments
-import os
 allowed_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173").split(",")
 
 # Add Vercel URL if available
@@ -27,6 +35,40 @@ if os.getenv("VERCEL_URL"):
     vercel_url = f"https://{os.getenv('VERCEL_URL')}"
     if vercel_url not in allowed_origins:
         allowed_origins.append(vercel_url)
+
+# Initialize FastAPI app with lifespan for database initialization
+try:
+    from contextlib import asynccontextmanager
+    
+    @asynccontextmanager
+    async def lifespan(app: FastAPI):
+        # Startup: Initialize database (only if not in serverless mode)
+        # In serverless, we'll initialize lazily on first request
+        if not os.getenv("VERCEL"):
+            ensure_db_initialized()
+        yield
+        # Shutdown: cleanup if needed
+        pass
+    
+    app = FastAPI(
+        title="AI Wiki Quiz Generator API",
+        description="Generate educational quizzes from Wikipedia articles using AI",
+        version="1.0.0",
+        lifespan=lifespan
+    )
+except ImportError:
+    # Fallback for older FastAPI versions
+    app = FastAPI(
+        title="AI Wiki Quiz Generator API",
+        description="Generate educational quizzes from Wikipedia articles using AI",
+        version="1.0.0"
+    )
+    
+    @app.on_event("startup")
+    def startup_event():
+        """Initialize database tables on startup"""
+        if not os.getenv("VERCEL"):
+            ensure_db_initialized()
 
 # Configure CORS (allow frontend to communicate with backend)
 # In Vercel, we allow all origins since frontend and backend are on same domain
@@ -37,13 +79,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# Initialize database on startup
-@app.on_event("startup")
-def startup_event():
-    """Initialize database tables on startup"""
-    init_db()
-    print("✅ Database initialized")
 
 
 # Root endpoint
@@ -82,6 +117,8 @@ def generate_quiz_endpoint(request: QuizGenerateRequest, db: Session = Depends(g
     Returns:
         QuizGenerateResponse with the generated quiz data
     """
+    # Ensure database is initialized (lazy init for serverless)
+    ensure_db_initialized()
     try:
         url = request.url.strip()
         
@@ -193,6 +230,8 @@ def get_history(db: Session = Depends(get_db)):
     Returns:
         List of QuizHistoryItem objects
     """
+    # Ensure database is initialized (lazy init for serverless)
+    ensure_db_initialized()
     try:
         print("\n📚 Fetching quiz history...")
         
@@ -232,6 +271,8 @@ def get_quiz_by_id(quiz_id: int, db: Session = Depends(get_db)):
     Returns:
         QuizGenerateResponse with the quiz data
     """
+    # Ensure database is initialized (lazy init for serverless)
+    ensure_db_initialized()
     try:
         print(f"\n🔍 Fetching quiz with ID: {quiz_id}")
         
