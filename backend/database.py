@@ -64,12 +64,22 @@ if is_render:
         print("   Please set DATABASE_URL environment variable in Render Dashboard")
         print("   Go to: Your Service → Environment → Add DATABASE_URL")
     elif "localhost" in DATABASE_URL or "127.0.0.1" in DATABASE_URL:
-        print("❌ ERROR: DATABASE_URL contains 'localhost' or '127.0.0.1'!")
-        print("   This won't work on Render - databases are not on localhost")
-        print("   You need to use the Render database connection string")
-        print("   Get it from: Your Database → Connections tab → Internal Database URL")
-        print("   It should look like: postgresql://user:password@hostname.onrender.com:5432/dbname")
-        print("   NOT: postgresql://user:password@localhost:5432/dbname")
+        error_msg = (
+            "❌ FATAL ERROR: DATABASE_URL contains 'localhost' or '127.0.0.1'!\n"
+            "   This won't work on Render - databases are not on localhost\n"
+            "   You need to use the Render database connection string\n\n"
+            "   STEPS TO FIX:\n"
+            "   1. Go to Render Dashboard → Your PostgreSQL Database\n"
+            "   2. Click on 'Connections' tab\n"
+            "   3. Copy the 'Internal Database URL' (if backend and DB are in same region)\n"
+            "   4. Go to Your Backend Service → Environment tab\n"
+            "   5. Update DATABASE_URL with the Render connection string\n"
+            "   6. Save and redeploy\n\n"
+            "   CORRECT FORMAT: postgresql://user:password@dpg-xxxxx-a.oregon-postgres.render.com:5432/dbname\n"
+            "   WRONG FORMAT:  postgresql://user:password@localhost:5432/dbname\n"
+        )
+        print(error_msg)
+        raise ValueError("DATABASE_URL cannot contain localhost on Render. Please use Render database connection string.")
 
 # Engine and Session
 # Use connect_args for SQLite to handle file creation
