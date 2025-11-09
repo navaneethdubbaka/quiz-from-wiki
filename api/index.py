@@ -111,9 +111,14 @@ except Exception as e:
 
 # Export the handler for Vercel
 # lifespan="off" disables startup/shutdown events which can cause issues in serverless
+# api_gateway_base_path="/api" strips the /api prefix from paths before passing to FastAPI
 try:
-    handler = Mangum(app, lifespan="off")
-    print("API wrapper: Successfully created Mangum handler")
+    handler = Mangum(
+        app, 
+        lifespan="off",
+        api_gateway_base_path="/api"  # Strip /api prefix from paths
+    )
+    print("API wrapper: Successfully created Mangum handler with /api prefix stripping")
 except Exception as e:
     print(f"API wrapper: Handler creation error: {e}")
     traceback.print_exc()
