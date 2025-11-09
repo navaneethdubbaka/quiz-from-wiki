@@ -25,7 +25,9 @@ def ensure_db_initialized():
             print("✅ Database initialized")
         except Exception as e:
             print(f"⚠️ Database initialization warning: {e}")
-            # Don't fail if DB init fails (might be connection issue)
+            # Don't fail if DB init fails (might be connection issue or read-only filesystem)
+            # Mark as initialized anyway to prevent repeated attempts
+            _db_initialized = True
 
 # CORS origins - allow local dev and Vercel deployments
 allowed_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173").split(",")
@@ -102,6 +104,53 @@ def root():
 def health_check():
     """Health check endpoint"""
     return {"status": "healthy", "timestamp": datetime.utcnow().isoformat()}
+
+
+# Database test endpoint
+@app.get("/test-db")
+def test_database(db: Session = Depends(get_db)):
+    """Test database connection and return status"""
+    try:
+        # Ensure database is initialized
+        ensure_db_initialized()
+        
+        # Try to query the database
+        from database import engine, DATABASE_URL
+        from sqlalchemy import text
+        
+        # Test connection
+        with engine.connect() as conn:
+            result = conn.execute(text("SELECT 1"))
+            result.fetchone()
+        
+        # Try to query Quiz table (might not exist yet)
+        try:
+            quiz_count = db.query(Quiz).count()
+            return {
+                "status": "success",
+                "database_type": "PostgreSQL" if DATABASE_URL.startswith("postgresql") else "SQLite",
+                "connection": "ok",
+                "tables_created": True,
+                "quiz_count": quiz_count,
+                "timestamp": datetime.utcnow().isoformat()
+            }
+        except Exception as e:
+            # Tables might not be created yet
+            return {
+                "status": "success",
+                "database_type": "PostgreSQL" if DATABASE_URL.startswith("postgresql") else "SQLite",
+                "connection": "ok",
+                "tables_created": False,
+                "error": str(e),
+                "timestamp": datetime.utcnow().isoformat()
+            }
+    except Exception as e:
+        return {
+            "status": "error",
+            "error": str(e),
+            "database_type": "PostgreSQL" if os.getenv("DATABASE_URL", "").startswith("postgresql") else "SQLite",
+            "timestamp": datetime.utcnow().isoformat()
+        }
 
 
 # Endpoint 1: Generate Quiz

@@ -23,19 +23,41 @@ load_dotenv()
 # In production/Vercel, this should be set via environment variables
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./quiz_generator.db")
 
+# Handle Vercel Postgres connection string format
+# Vercel Postgres uses POSTGRES_URL, POSTGRES_PRISMA_URL, or POSTGRES_URL_NON_POOLING
+if not DATABASE_URL or DATABASE_URL.startswith("sqlite"):
+    # Try Vercel Postgres environment variables
+    vercel_postgres_url = os.getenv("POSTGRES_URL") or os.getenv("POSTGRES_PRISMA_URL") or os.getenv("POSTGRES_URL_NON_POOLING")
+    if vercel_postgres_url:
+        DATABASE_URL = vercel_postgres_url
+        print(f"✅ Using Vercel Postgres connection string")
+
 # Engine and Session
 # Use connect_args for SQLite to handle file creation
 connect_args = {}
+pool_settings = {}
+
 if DATABASE_URL.startswith("sqlite"):
     connect_args = {"check_same_thread": False}
+elif DATABASE_URL.startswith("postgresql"):
+    # PostgreSQL connection pool settings for serverless
+    connect_args = {}
+    pool_settings = {
+        "pool_size": 1,  # Small pool for serverless
+        "max_overflow": 0,
+        "pool_recycle": 300,  # Recycle connections after 5 minutes
+    }
 
 try:
     engine = create_engine(
         DATABASE_URL,
         echo=False,  # Disable echo in production to reduce logs
         pool_pre_ping=True,
-        connect_args=connect_args
+        connect_args=connect_args,
+        **pool_settings
     )
+    db_type = "PostgreSQL" if DATABASE_URL.startswith("postgresql") else "SQLite"
+    print(f"✅ Database engine created: {db_type}")
 except Exception as e:
     print(f"⚠️ Database engine creation warning: {e}")
     # Create a minimal engine even if there's an error
@@ -43,7 +65,8 @@ except Exception as e:
         DATABASE_URL,
         echo=False,
         pool_pre_ping=True,
-        connect_args=connect_args
+        connect_args=connect_args,
+        **pool_settings
     )
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -75,5 +98,10 @@ class Quiz(Base):
 
 # Initialize database
 def init_db():
-    Base.metadata.create_all(bind=engine)
-    print("✅ Database tables created successfully!")
+    try:
+        Base.metadata.create_all(bind=engine)
+        print("✅ Database tables created successfully!")
+    except Exception as e:
+        print(f"⚠️ Database initialization warning: {e}")
+        # Don't fail if DB init fails (might be connection issue or read-only filesystem)
+        # In serverless, this is often expected

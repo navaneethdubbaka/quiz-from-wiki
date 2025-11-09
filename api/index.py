@@ -49,17 +49,19 @@ for path in paths_to_add:
 print(f"API wrapper: sys.path (first 5): {sys.path[:5]}")
 
 # Try to list files in backend directory for debugging
-if os.path.exists(backend_path):
+if backend_path and os.path.exists(backend_path):
     try:
         backend_files = os.listdir(backend_path)
         print(f"API wrapper: Backend directory files: {backend_files[:10]}")
     except Exception as e:
         print(f"API wrapper: Could not list backend files: {e}")
+else:
+    print(f"API wrapper: WARNING - Backend directory not found! Checked paths: {backend_paths}")
 
 # Set working directory to backend for relative imports
 original_cwd = os.getcwd()
 try:
-    if os.path.exists(backend_path):
+    if backend_path and os.path.exists(backend_path):
         os.chdir(backend_path)
         print(f"API wrapper: Changed working directory to {os.getcwd()}")
 except Exception as e:
