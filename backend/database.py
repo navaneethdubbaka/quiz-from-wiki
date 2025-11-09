@@ -23,6 +23,22 @@ load_dotenv()
 # In production, this should be set via environment variables
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./quiz_generator.db")
 
+# Log database configuration (without sensitive info)
+if DATABASE_URL.startswith("postgresql"):
+    # Mask password in logs
+    safe_url = DATABASE_URL.split("@")[-1] if "@" in DATABASE_URL else DATABASE_URL
+    print(f"📊 Database: PostgreSQL - {safe_url}")
+elif DATABASE_URL.startswith("sqlite"):
+    print(f"📊 Database: SQLite - {DATABASE_URL}")
+else:
+    print(f"📊 Database: Unknown type - {DATABASE_URL[:20]}...")
+
+# Validate DATABASE_URL is set for production
+if not DATABASE_URL or DATABASE_URL == "sqlite:///./quiz_generator.db":
+    if os.getenv("RENDER") or os.getenv("DATABASE_URL"):
+        print("⚠️ WARNING: DATABASE_URL not set or using SQLite in production!")
+        print("   Please set DATABASE_URL environment variable to your PostgreSQL connection string")
+
 # Engine and Session
 # Use connect_args for SQLite to handle file creation
 connect_args = {}

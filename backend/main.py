@@ -1,6 +1,8 @@
 # main.py
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import FastAPI, HTTPException, Depends, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+from fastapi.exceptions import RequestValidationError
 from sqlalchemy.orm import Session
 from datetime import datetime
 import json
@@ -29,7 +31,11 @@ def ensure_db_initialized():
             _db_initialized = True
 
 # CORS origins - allow local dev and production deployments
-allowed_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173").split(",")
+allowed_origins_str = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173")
+allowed_origins = [origin.strip() for origin in allowed_origins_str.split(",") if origin.strip()]
+
+# Log CORS configuration for debugging
+print(f"🌐 CORS allowed origins: {allowed_origins}")
 
 # Initialize FastAPI app with lifespan for database initialization
 try:
@@ -63,13 +69,67 @@ except ImportError:
         ensure_db_initialized()
 
 # Configure CORS (allow frontend to communicate with backend)
+# For production, allow all origins by default (can be restricted via ALLOWED_ORIGINS)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=allowed_origins,
+    allow_origins=["*"] if "*" in allowed_origins or not allowed_origins else allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+print(f"🌐 CORS: Allowing origins: {'* (all)' if '*' in allowed_origins or not allowed_origins else allowed_origins}")
+
+
+# Add request logging middleware
+@app.middleware("http")
+async def log_requests(request: Request, call_next):
+    """Log all incoming requests for debugging"""
+    # Handle OPTIONS preflight requests
+    if request.method == "OPTIONS":
+        response = await call_next(request)
+        return response
+    
+    print(f"\n📥 {request.method} {request.url.path}")
+    print(f"   Origin: {request.headers.get('origin', 'N/A')}")
+    
+    try:
+        response = await call_next(request)
+        print(f"✅ {request.method} {request.url.path} - Status: {response.status_code}")
+        return response
+    except Exception as e:
+        print(f"❌ {request.method} {request.url.path} - Error: {str(e)}")
+        raise
+
+
+# Add validation error handler
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    """Handle request validation errors with detailed messages"""
+    print(f"❌ Validation error on {request.method} {request.url.path}: {exc.errors()}")
+    return JSONResponse(
+        status_code=422,  # Use 422 for validation errors (FastAPI standard)
+        content={
+            "detail": "Request validation failed",
+            "errors": exc.errors(),
+            "body": str(exc.body) if hasattr(exc, 'body') else None
+        }
+    )
+
+
+# Handle OPTIONS requests explicitly (CORS preflight)
+@app.options("/{full_path:path}")
+async def options_handler(full_path: str):
+    """Handle CORS preflight OPTIONS requests"""
+    return JSONResponse(
+        status_code=200,
+        content={},
+        headers={
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers": "*",
+            "Access-Control-Max-Age": "3600",
+        }
+    )
 
 
 # Root endpoint
@@ -158,7 +218,14 @@ def generate_quiz_endpoint(request: QuizGenerateRequest, db: Session = Depends(g
     # Ensure database is initialized
     ensure_db_initialized()
     try:
+        # Validate request
+        if not request.url:
+            raise HTTPException(status_code=400, detail="URL is required")
+        
         url = request.url.strip()
+        
+        if not url:
+            raise HTTPException(status_code=400, detail="URL cannot be empty")
         
         print(f"\n{'='*80}")
         print(f"📥 Received request to generate quiz for: {url}")
