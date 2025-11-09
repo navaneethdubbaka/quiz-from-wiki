@@ -2,10 +2,10 @@
 import axios from 'axios';
 
 // Base URL for the FastAPI backend
-// In Vercel, API routes are under /api, so we use relative URLs
-// For local development, use the full URL
+// For Render deployment, use the full backend URL
+// For local development, use localhost
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 
-  (import.meta.env.PROD ? '/api' : 'http://localhost:8000');
+  (import.meta.env.PROD ? 'https://your-backend.onrender.com' : 'http://localhost:8000');
 
 // Create axios instance with default config
 const apiClient = axios.create({

@@ -44,8 +44,9 @@ try:
     
     @asynccontextmanager
     async def lifespan(app: FastAPI):
-        # Startup: Initialize database (only if not in serverless mode)
-        # In serverless, we'll initialize lazily on first request
+        # Startup: Initialize database
+        # For Render (long-running process), initialize on startup
+        # For Vercel (serverless), initialize lazily on first request
         if not os.getenv("VERCEL"):
             ensure_db_initialized()
         yield
@@ -69,6 +70,8 @@ except ImportError:
     @app.on_event("startup")
     def startup_event():
         """Initialize database tables on startup"""
+        # For Render (long-running process), initialize on startup
+        # For Vercel (serverless), initialize lazily on first request
         if not os.getenv("VERCEL"):
             ensure_db_initialized()
 

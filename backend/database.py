@@ -40,13 +40,23 @@ pool_settings = {}
 if DATABASE_URL.startswith("sqlite"):
     connect_args = {"check_same_thread": False}
 elif DATABASE_URL.startswith("postgresql"):
-    # PostgreSQL connection pool settings for serverless
+    # PostgreSQL connection pool settings
+    # For Render (long-running), use larger pool
+    # For Vercel (serverless), use smaller pool
     connect_args = {}
-    pool_settings = {
-        "pool_size": 1,  # Small pool for serverless
-        "max_overflow": 0,
-        "pool_recycle": 300,  # Recycle connections after 5 minutes
-    }
+    is_serverless = os.getenv("VERCEL") is not None
+    if is_serverless:
+        pool_settings = {
+            "pool_size": 1,  # Small pool for serverless
+            "max_overflow": 0,
+            "pool_recycle": 300,  # Recycle connections after 5 minutes
+        }
+    else:
+        pool_settings = {
+            "pool_size": 5,  # Larger pool for long-running processes
+            "max_overflow": 10,
+            "pool_recycle": 3600,  # Recycle connections after 1 hour
+        }
 
 try:
     engine = create_engine(
